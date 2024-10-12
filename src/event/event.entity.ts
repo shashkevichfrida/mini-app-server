@@ -1,8 +1,9 @@
 import {
   Column,
-  Entity,
+  Entity, ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
+import {Student} from "../student/student.entity";
 
 @Entity()
 export class Event {
@@ -14,4 +15,7 @@ export class Event {
 
   @Column('varchar', { length: 1000 })
   category: string;
+
+  @ManyToOne(() => Student, (student) => student.completeEvents)
+  studentId: Student;
 }

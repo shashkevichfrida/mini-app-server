@@ -14,4 +14,6 @@ export class ProductDto {
     @ApiProperty()
     image: string
 
+    @ApiProperty()
+    studentId: number;
 }

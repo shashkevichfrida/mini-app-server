@@ -13,6 +13,7 @@ export class EventService {
 
   async create(data: EventDto) {
     console.log(data);
+    
     const event = this.eventRepository.create(data);
     await this.eventRepository.save(event);
     return event;
