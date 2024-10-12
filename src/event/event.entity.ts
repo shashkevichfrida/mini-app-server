@@ -8,7 +8,7 @@ import {ApiProperty} from "@nestjs/swagger";
   
 @Entity()
 export class Event {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id: number;
 
     @Column('varchar', { length: 1000 })
