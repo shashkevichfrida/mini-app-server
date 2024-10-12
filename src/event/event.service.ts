@@ -11,13 +11,13 @@ export class EventService {
     private eventRepository: Repository<Event>,
   ) {}
 
-  async create(data: EventDto) {
-    console.log(data);
-    
-    const event = this.eventRepository.create(data);
-    await this.eventRepository.save(event);
-    return event;
-  }
+  // async create(data: EventDto) {
+  //   console.log(data);
+  //
+  //   const event = this.eventRepository.create(data);
+  //   await this.eventRepository.save(event);
+  //   return event;
+  // }
 
   async delete(id: number) {
     // await this.eventRepository.delete({ id });

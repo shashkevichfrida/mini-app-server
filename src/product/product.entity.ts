@@ -21,5 +21,5 @@ export class Product {
   imagePath: string;
 
   @ManyToOne(() => Student, (student) => student.completeEvents)
-  studentId: Student;
+  student: Student;
 }

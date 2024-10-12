@@ -41,7 +41,7 @@ export class StudentController {
     };
   }
 
-  @Get('getStudentRateByCourse')
+  @Get('getStudentRateByCourse/:course/:level/:countOfFriends')
   async getStudentsForRate(
     @Param('course') course: string,
     @Param('level') level: string,
@@ -52,7 +52,6 @@ export class StudentController {
       level,
       getStudentsForRate,
     );
-
     return {
       statusCode: HttpStatus.OK,
       message: 'Students found successfully',
@@ -71,7 +70,7 @@ export class StudentController {
     };
   }
 
-  @Post('replenishmentBalance')
+  @Post('replenishmentBalance/:id/:money')
   async replenishmentBalance(
     @Param('id') id: number,
     @Param('money') money: number,
@@ -88,12 +87,12 @@ export class StudentController {
     };
   }
 
-  @Post('withdrawBalance')
+  @Post('withdrawBalance/:id/:money')
   async withdrawBalance(
     @Param('id') id: number,
     @Param('money') money: number,
   ) {
-    if (await this.studentService.withdrawBalance(id, money)) {
+    if (await this.studentService.withdrawBalance(id, Number(money))) {
       return {
         statusCode: HttpStatus.OK,
         message: 'Money withdraw successfully',

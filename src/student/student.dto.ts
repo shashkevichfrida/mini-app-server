@@ -1,7 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { ProductDto } from '../product/product.dto';
-import { EventDto } from '../event/event.dto';
-import { ApiProperty } from '@nestjs/swagger';
+
 export class StudentDto {
   @ApiProperty()
   id: number;

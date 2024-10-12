@@ -11,11 +11,11 @@ export class ProductService {
     private productRepository: Repository<Product>,
   ) {}
 
-  async create(data: ProductDto) {
-    const product = this.productRepository.create(data);
-    await this.productRepository.save(product);
-    return product;
-  }
+  // async create(data: ProductDto) {
+  //   const product = this.productRepository.create(data);
+  //   await this.productRepository.save(product);
+  //   return product;
+  // }
 
   async delete(id: number) {
     // await this.productRepository.delete({ id });

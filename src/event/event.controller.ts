@@ -31,26 +31,26 @@ export class EventController {
     private eventService: EventService,
   ) {}
 
-  @Post('createEvent')
-  @ApiCreatedResponse({ type: EventDto })
-  async create(@Body() data: EventDto, @Req() req) {
-    const event = await this.eventService.create(data);
+  // @Post('createEvent')
+  // @ApiCreatedResponse({ type: EventDto })
+  // async create(@Body() data: EventDto, @Req() req) {
+  //   const event = await this.eventService.create(data);
+  //
+  //   return {
+  //     statusCode: HttpStatus.OK,
+  //     message: 'Event found successfully',
+  //     event
+  //   };
+  // }
 
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'Event found successfully',
-      event
-    };
-  }
-
-  @Delete('delete/:id')
-  async delete(@Param('id') id: number) {
-    await this.eventService.delete(id);
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'Event deleted successfully',
-    };
-  }
+  // @Delete('delete/:id')
+  // async delete(@Param('id') id: number) {
+  //   await this.eventService.delete(id);
+  //   return {
+  //     statusCode: HttpStatus.OK,
+  //     message: 'Event deleted successfully',
+  //   };
+  // }
 
 
   @Post('categories/:category')
@@ -73,14 +73,14 @@ export class EventController {
     };
   }
 
-  @Patch('update/:id')
-  async update(@Param('id') id: number, @Body() data: Partial<EventDto>) {
-    await this.eventService.update(id, data);
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'Event updated successfully',
-    };
-  }
+  // @Patch('update/:id')
+  // async update(@Param('id') id: number, @Body() data: Partial<EventDto>) {
+  //   await this.eventService.update(id, data);
+  //   return {
+  //     statusCode: HttpStatus.OK,
+  //     message: 'Event updated successfully',
+  //   };
+  // }
 
   @Get(':id')
   async getById(@Param('id') id: number) {

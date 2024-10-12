@@ -17,5 +17,5 @@ export class Event {
   category: string;
 
   @ManyToOne(() => Student, (student) => student.completeEvents)
-  studentId: Student;
+  student: Student;
 }

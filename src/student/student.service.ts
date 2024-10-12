@@ -21,11 +21,12 @@ export class StudentService {
     level: string,
     countOfFriends: number,
   ) {
-    return await this.studentRepository
-      .createQueryBuilder('student')
-      .where('student.course = :course', { course })
-      .limit(countOfFriends)
-      .getMany();
+    const students = await this.studentRepository.find({where : {course: course, level: level}});
+    //return await this.studentRepository.find({where: {course: course}}).then({where: {level: level}});
+      // .createQueryBuilder('student')
+      // .where('student.course = :course', { course })
+      // .limit(countOfFriends)
+      // .getMany();
   }
 
   async getStudentMoney(id: number) {
@@ -37,9 +38,9 @@ export class StudentService {
 
   async withdrawBalance(id: number, money: number) {
     if (money > 0) {
-      const user = await this.studentRepository.findOne({ where: { id: id } });
+      let user = await this.studentRepository.findOne({ where: { id: id } });
       if (user.money >= money) {
-        user.money = user.money - money;
+        user.money = Number(user.money) - Number(money);
         await this.studentRepository.update({ id }, user);
         return true;
       }
@@ -48,12 +49,14 @@ export class StudentService {
   }
 
   async replenishmentBalance(id: number, money: number) {
+    console.log(money)
     if (money > 0) {
-      const user = await this.studentRepository.findOne({ where: { id: id } });
-      user.money = user.money + money;
+      let user = await this.studentRepository.findOne({ where: { id: id } });
+      user.money = Number(user.money) + Number(money);
       await this.studentRepository.update({ id }, user);
       return true;
     }
+    console.log('negative value')
     return false;
   }
 }
