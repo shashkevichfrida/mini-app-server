@@ -58,7 +58,7 @@ export class StudentController {
   }
 
   @Post('getStudentEvents')
-  async getStudentEvents(@Param('id') id: string) {
+  async getStudentEvents(@Param('id') id: number) {
     const data = await this.studentService.getStudentEvents(id);
 
     return {
@@ -70,7 +70,7 @@ export class StudentController {
 
   @Post('getStudentRateByCourse')
   async getStudentRateByCourse(@Param('course') course: string, @Param('level') level: string) {
-    const students = await this.studentService.getStudentEvents();
+    const students = await this.studentService.getStudentRateByCourse(course, level);
 
     return {
       statusCode: HttpStatus.OK,
@@ -80,7 +80,7 @@ export class StudentController {
   }
 
   @Post('getStudentMoney')
-  async getStudentMoney(@Param('id') id: string) {
+  async getStudentMoney(@Param('id') id: number) {
     const money = await this.studentService.getStudentMoney(id);
 
     return {

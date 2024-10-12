@@ -14,8 +14,7 @@ export class StudentService {
       ) {}
 
     async getOne() {
-
-        // IMPLEMENT ME
+        return this.studentRepository.findOne({ where : {id: (Math.floor(Math.random() * 1000 )) } })
     }
 
     // no in front
@@ -23,8 +22,10 @@ export class StudentService {
         // IMPLEMENT ME
     }
 
-    async getStudentEvents(id: string) {
-        // IMPLEMENT ME
+    async getStudentEvents(id: number) {
+        
+        const user = await this.studentRepository.findOne({ where: { id: id } });
+        return user.mer;
     }
 
     // no in front
@@ -32,8 +33,9 @@ export class StudentService {
         // IMPLEMENT ME
     }
 
-    async getStudentMoney(id: string) {
-        // IMPLEMENT ME
+    async getStudentMoney(id: number) {
+        const user = await this.studentRepository.findOne({ where: { id: id } });
+        return user.money;
     }
     
 }
