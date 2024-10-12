@@ -8,7 +8,7 @@ import {ApiProperty} from "@nestjs/swagger";
   
   @Entity()
 export class Student {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id: number;
 
     @Column('varchar', { length: 20 })

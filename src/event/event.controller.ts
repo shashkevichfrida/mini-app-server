@@ -43,11 +43,8 @@ export class EventController {
     };
   }
 
-  @Delete(':id')
-  @ApiOperation({
-    summary: 'Delete event',
-  })
-  async delete(id: number) {
+  @Delete('delete/:id')
+  async delete(@Param('id') id: number) {
     await this.eventService.delete(id);
     return {
       statusCode: HttpStatus.OK,
@@ -56,7 +53,7 @@ export class EventController {
   }
 
 
-  @Post('categories')
+  @Post('categories/:category')
   async getByCategory(@Param('category') category: string) {
     const data = await this.eventService.getByCategory(category);
     return {
@@ -76,8 +73,8 @@ export class EventController {
     };
   }
 
-  @Patch(':id')
-  async update(id: number, data: Partial<EventDto>) {
+  @Patch('update/:id')
+  async update(@Param('id') id: number, @Body() data: Partial<EventDto>) {
     await this.eventService.update(id, data);
     return {
       statusCode: HttpStatus.OK,
@@ -86,7 +83,7 @@ export class EventController {
   }
 
   @Get(':id')
-  async getById(id: number) {
+  async getById(@Param('id') id: number) {
     const data = await this.eventService.getById(id);
     return {
       statusCode: HttpStatus.OK,
