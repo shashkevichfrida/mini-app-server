@@ -33,13 +33,13 @@ export class EventController {
 
   @Post('createEvent')
   @ApiCreatedResponse({ type: EventDto })
-  async getOne(@Body() data: EventDto, @Req() req) {
-    const student = await this.eventService.create(data);
+  async create(@Body() data: EventDto, @Req() req) {
+    const event = await this.eventService.create(data);
 
     return {
       statusCode: HttpStatus.OK,
-      message: 'Student found successfully',
-      student
+      message: 'Event found successfully',
+      event
     };
   }
 
@@ -90,7 +90,7 @@ export class EventController {
     const data = await this.eventService.getById(id);
     return {
       statusCode: HttpStatus.OK,
-      message: 'Event found successfully',
+      message: 'Events found successfully',
       data,
     };
   }
