@@ -1,31 +1,25 @@
-
 import { ApiProperty } from '@nestjs/swagger';
+import { ProductDto } from '../product/product.dto';
+import { EventDto } from '../event/event.dto';
 export class StudentDto {
+  @ApiProperty()
+  id: number;
 
-    @ApiProperty()
-    id: number;
+  @ApiProperty()
+  faculty: string;
 
-    @ApiProperty()
-    faculty: string;
+  @ApiProperty()
+  level: string;
 
-    @ApiProperty()
-    level: string;
+  @ApiProperty()
+  course: number;
 
-    @ApiProperty()
-    course: number;
+  @ApiProperty()
+  products: ProductDto[];
 
-    @ApiProperty()
-    sport: string
+  @ApiProperty()
+  events: EventDto[];
 
-    @ApiProperty()
-    club: string
-
-    @ApiProperty()
-    mer: string
-
-    @ApiProperty()
-    merCategories: string
-
-    @ApiProperty()
-    money: number
+  @ApiProperty()
+  money: number;
 }

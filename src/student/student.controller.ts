@@ -24,14 +24,10 @@ import {
 import { StudentService } from './student.service';
 import { StudentDto } from './student.dto';
 
-
-
 @ApiTags('student')
 @Controller('student')
 export class StudentController {
-  constructor(
-    private studentService: StudentService,
-  ) {}
+  constructor(private studentService: StudentService) {}
 
   @Get('getOne')
   @ApiCreatedResponse({ type: StudentDto })
@@ -41,45 +37,29 @@ export class StudentController {
     return {
       statusCode: HttpStatus.OK,
       message: 'Student found successfully',
-      student
+      student,
     };
   }
 
-  // @Post('getRandomStudents')
-  // async getRandomStudents() {
-  //
-  //   const students = await this.studentService.getRandomStudents();
-  //
-  //   return {
-  //     statusCode: HttpStatus.OK,
-  //     message: 'Students found successfully',
-  //     students
-  //   };
-  // }
-
-  @Post('getStudentEvents/:id')
-  async getStudentEvents(@Param('id') id: number) {
-    const data = await this.studentService.getStudentEvents(id);
+  @Get('getStudentRateByCourse')
+  async getStudentsForRate(
+    @Param('course') course: string,
+    @Param('level') level: string,
+    @Param('countOfFriends') getStudentsForRate: number,
+  ) {
+    const students = await this.studentService.getStudentsForRate(
+      course,
+      level,
+      getStudentsForRate,
+    );
 
     return {
       statusCode: HttpStatus.OK,
-      message: 'Events found successfully',
-      data
+      message: 'Students found successfully',
+      students,
     };
   }
 
-  // @Post('getStudentRateByCourse/:course')
-  // async getStudentRateByCourse(@Param('course') course: string, @Param('level') level: string) {
-  //   // const students = await this.studentService.getStudentRateByCourse(course, level);
-  //
-  //   return {
-  //     statusCode: HttpStatus.OK,
-  //     message: 'Students found successfully',
-  //     // students
-  //   };
-  // }
-
-  //@Post('getStudentMoney')
   @Get('getStudentMoney/:id')
   async getStudentMoney(@Param('id') id: number) {
     const money = await this.studentService.getStudentMoney(id);
@@ -87,7 +67,41 @@ export class StudentController {
     return {
       statusCode: HttpStatus.OK,
       message: 'Money found successfully',
-      money
+      money,
+    };
+  }
+
+  @Post('replenishmentBalance')
+  async replenishmentBalance(
+    @Param('id') id: number,
+    @Param('money') money: number,
+  ) {
+    if (await this.studentService.replenishmentBalance(id, money)) {
+      return {
+        statusCode: HttpStatus.OK,
+        message: 'Money replenishment successfully',
+      };
+    }
+    return {
+      statusCode: HttpStatus.BAD_REQUEST,
+      message: 'Money not replenishment',
+    };
+  }
+
+  @Post('withdrawBalance')
+  async withdrawBalance(
+    @Param('id') id: number,
+    @Param('money') money: number,
+  ) {
+    if (await this.studentService.withdrawBalance(id, money)) {
+      return {
+        statusCode: HttpStatus.OK,
+        message: 'Money withdraw successfully',
+      };
+    }
+    return {
+      statusCode: HttpStatus.BAD_REQUEST,
+      message: 'Money not withdraw',
     };
   }
 }

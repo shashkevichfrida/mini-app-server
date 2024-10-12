@@ -1,19 +1,17 @@
 import {
-    Column,
-    Entity,
-    PrimaryGeneratedColumn,
-    CreateDateColumn,
-  } from 'typeorm';
-import {ApiProperty} from "@nestjs/swagger";
-  
+  Column,
+  Entity,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+
 @Entity()
 export class Event {
-    @PrimaryGeneratedColumn()
-    id: number;
+  @PrimaryGeneratedColumn()
+  id_event: number;
 
-    @Column('varchar', { length: 1000 })
-    event: string;
+  @Column('varchar', { length: 1000 })
+  event: string;
 
-    @Column('varchar', { length: 1000 })
-    category: string
+  @Column('varchar', { length: 1000 })
+  category: string;
 }
