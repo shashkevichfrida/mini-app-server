@@ -3,7 +3,7 @@ import { ApiProperty } from '@nestjs/swagger';
 export class StudentDto {
 
     @ApiProperty()
-    id: string;
+    id: number;
 
     @ApiProperty()
     faculty: string;
@@ -21,7 +21,10 @@ export class StudentDto {
     club: string
 
     @ApiProperty()
-    event: string
+    mer: string
+
+    @ApiProperty()
+    merCategories: string
 
     @ApiProperty()
     money: number

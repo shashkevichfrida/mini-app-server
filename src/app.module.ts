@@ -5,15 +5,15 @@ import { StudentModule } from './student/student.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomConfigModule } from './config.module';
 import { Student } from './student/student.entity';
+import {StudentService} from "./student/student.service";
 
 @Module({
   imports: [
     
-
     StudentModule,
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'students.db',
+      database: 'users.db',
       entities: [Student],
       synchronize: true,
       logging: true,
@@ -22,7 +22,7 @@ import { Student } from './student/student.entity';
   ],
   controllers: [AppController],
   providers: [
-
+  AppService
   ],
 })
 export class AppModule {}
