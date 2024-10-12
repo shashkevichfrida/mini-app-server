@@ -14,7 +14,7 @@ export class StudentService {
       ) {}
 
     async getOne() {
-        return this.studentRepository.findOne({ where : {id: (Math.floor(Math.random() * 1000 )) } })
+        return this.studentRepository.findOne({ where : {id: Math.round(Math.random() * 1000) } })
     }
 
     // no in front
@@ -34,7 +34,8 @@ export class StudentService {
     }
 
     async getStudentMoney(id: number) {
-        const user = await this.studentRepository.findOne({ where: { id: id } });
+        // console.log("NUMBER", id, Number(id))
+        const user = await this.studentRepository.findOne({ where: { id: Number(id) } });
         return user.money;
     }
     

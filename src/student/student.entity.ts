@@ -20,10 +20,10 @@ export class Student {
     @Column('integer')
     course: number
 
-    @Column('varchar', { length: 10000 })
+    @Column('varchar', { length: 10000, nullable: true })
     sport: string
 
-    @Column('varchar', { length: 10000 })
+    @Column('varchar', { length: 10000, nullable: true })
     club: string
 
     @Column('varchar', { length: 10000 })

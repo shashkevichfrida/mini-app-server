@@ -45,19 +45,19 @@ export class StudentController {
     };
   }
 
-  @Post('getRandomStudents')
-  async getRandomStudents() {
-    
-    const students = await this.studentService.getRandomStudents();
+  // @Post('getRandomStudents')
+  // async getRandomStudents() {
+  //
+  //   const students = await this.studentService.getRandomStudents();
+  //
+  //   return {
+  //     statusCode: HttpStatus.OK,
+  //     message: 'Students found successfully',
+  //     students
+  //   };
+  // }
 
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'Students found successfully',
-      students
-    };
-  }
-
-  @Post('getStudentEvents')
+  @Post('getStudentEvents/:id')
   async getStudentEvents(@Param('id') id: number) {
     const data = await this.studentService.getStudentEvents(id);
 
@@ -68,18 +68,19 @@ export class StudentController {
     };
   }
 
-  @Post('getStudentRateByCourse')
-  async getStudentRateByCourse(@Param('course') course: string, @Param('level') level: string) {
-    const students = await this.studentService.getStudentRateByCourse(course, level);
+  // @Post('getStudentRateByCourse/:course')
+  // async getStudentRateByCourse(@Param('course') course: string, @Param('level') level: string) {
+  //   // const students = await this.studentService.getStudentRateByCourse(course, level);
+  //
+  //   return {
+  //     statusCode: HttpStatus.OK,
+  //     message: 'Students found successfully',
+  //     // students
+  //   };
+  // }
 
-    return {
-      statusCode: HttpStatus.OK,
-      message: 'Students found successfully',
-      students
-    };
-  }
-
-  @Post('getStudentMoney')
+  //@Post('getStudentMoney')
+  @Get('getStudentMoney/:id')
   async getStudentMoney(@Param('id') id: number) {
     const money = await this.studentService.getStudentMoney(id);
 
