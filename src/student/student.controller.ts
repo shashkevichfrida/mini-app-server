@@ -33,9 +33,9 @@ export class StudentController {
     private studentService: StudentService,
   ) {}
 
-  @Post('getOne')
+  @Get('getOne')
   @ApiCreatedResponse({ type: StudentDto })
-  async getOne() {
+  async getOne(@Req() req) {
     const student = await this.studentService.getOne();
 
     return {
