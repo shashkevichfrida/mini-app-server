@@ -18,7 +18,7 @@ export class StudentService {
     }
 
     // no in front
-    async getRandomStudents() {
+   async getRandomStudents() {
         // IMPLEMENT ME
     }
 
