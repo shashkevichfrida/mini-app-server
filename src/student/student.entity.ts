@@ -4,11 +4,12 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
   } from 'typeorm';
+import {ApiProperty} from "@nestjs/swagger";
   
   @Entity()
 export class Student {
     @PrimaryGeneratedColumn('uuid')
-    id: string;
+    id: number;
 
     @Column('varchar', { length: 20 })
     faculty: string;
@@ -26,7 +27,10 @@ export class Student {
     club: string
 
     @Column('varchar', { length: 10000 })
-    event: string
+    mer: string
+
+    @Column('varchar', { length: 10000 })
+    merCategories: string
 
     @Column('integer')
     money: number
