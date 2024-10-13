@@ -17,11 +17,11 @@ export class Student {
   @Column('integer')
   course: number;
 
-  @OneToMany(() => Event, (event) => event.id_event)
+  @OneToMany(() => Event, (event) => event.student)
   @ApiProperty({ type: () => Event })
   completeEvents: Event[];
 
-  @OneToMany(() => Product, (product) => product.id_product)
+  @OneToMany(() => Product, (product) => product.student)
   @ApiProperty({ type: () => Product })
   products: Product[];
 

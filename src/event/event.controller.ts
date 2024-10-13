@@ -53,6 +53,8 @@ export class EventController {
   // }
 
 
+
+
   @Post('categories/:category')
   async getByCategory(@Param('category') category: string) {
     const data = await this.eventService.getByCategory(category);

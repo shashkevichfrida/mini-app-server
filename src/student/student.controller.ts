@@ -1,33 +1,18 @@
-import {
-  ApiBearerAuth,
-  ApiBody,
-  ApiCreatedResponse,
-  ApiOperation,
-  ApiProperty,
-  ApiResponse,
-  ApiTags,
-} from '@nestjs/swagger';
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  HttpStatus,
-  Param,
-  Patch,
-  Post,
-  Req,
-  UseGuards,
-  UsePipes,
-  ValidationPipe,
-} from '@nestjs/common';
+import { ApiCreatedResponse, ApiTags } from '@nestjs/swagger';
+import { Controller, Get, HttpStatus, Param, Post, Req } from '@nestjs/common';
 import { StudentService } from './student.service';
 import { StudentDto } from './student.dto';
+import { EventService } from '../event/event.service';
+import { ProductService } from '../product/product.service';
 
 @ApiTags('student')
 @Controller('student')
 export class StudentController {
-  constructor(private studentService: StudentService) {}
+  constructor(
+    private studentService: StudentService,
+    private eventService: EventService,
+    private productService: ProductService,
+  ) {}
 
   @Get('getOne')
   @ApiCreatedResponse({ type: StudentDto })
@@ -43,7 +28,7 @@ export class StudentController {
 
   @Get('getStudentRateByCourse/:course/:level/:countOfFriends')
   async getStudentsForRate(
-    @Param('course') course: string,
+    @Param('course') course: number,
     @Param('level') level: string,
     @Param('countOfFriends') getStudentsForRate: number,
   ) {
@@ -102,5 +87,17 @@ export class StudentController {
       statusCode: HttpStatus.BAD_REQUEST,
       message: 'Money not withdraw',
     };
+  }
+
+  @Post('addEvent/:id/:id')
+  async addEvent(@Param('id') id: number, @Param('id') idUser: number) {
+    const event = await this.eventService.getById(id);
+    await this.studentService.addEvent(event, idUser);
+  }
+
+  @Post('addProduct/:id/:id')
+  async addProduct(@Param('id') id: number, @Param('id') idUser: number) {
+    const product = await this.productService.getById(id);
+    this.studentService.addProduct(product, idUser);
   }
 }

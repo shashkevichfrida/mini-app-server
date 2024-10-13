@@ -1,9 +1,9 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
   Column,
-  Entity, ManyToOne,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+  Entity, JoinColumn, ManyToOne,
+  PrimaryGeneratedColumn
+} from "typeorm";
 import {Student} from "../student/student.entity";
 
 @Entity()
@@ -20,6 +20,9 @@ export class Product {
   @Column('varchar', { length: 1000 })
   imagePath: string;
 
-  @ManyToOne(() => Student, (student) => student.completeEvents)
+  @ManyToOne(() => Student, (student) => student.products, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'studentId' })
   student: Student;
 }
